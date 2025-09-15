@@ -47,13 +47,4 @@ def bot_on():
                 print(e)
     
     sonata_client.run(token)
-
-    @sonata_client.event
-    async def on_message(message):
-        if message.content.startswith("!leave"):
-            try:
-                bot_voice_client = await message.author.voice.channel.disconnect()
-                voice_clients[bot_voice_client.guild.id] = bot_voice_client
-            except Exception as e:
-                print(e)
             
