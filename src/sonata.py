@@ -16,23 +16,23 @@ def bot_on():
     current_songs = {}  # storing current song for each guild
     audio_players = {}  # preloaded audio players for each guild
     
-    # Optimized ytdl options for faster streaming
+    # optimized ytdl options for faster streaming
     ytdl_options = {
-        "format": "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio/best[height<=720]",  # Prefer audio, fallback to lower quality video
+        "format": "bestaudio[ext=m4a]/bestaudio[ext=webm]/bestaudio/best[height<=720]",  # prefer audio, fallback to lower quality video
         "noplaylist": True,
         "extract_flat": False,
         "quiet": True,
         "no_warnings": True,
-        "prefer_insecure": False,  # Use HTTPS when possible for faster connections
-        "socket_timeout": 30,      # Faster timeout for quicker failures
-        "fragment_retries": 3      # Fewer retries for faster error handling
+        "prefer_insecure": False,  # use HTTPS when possible for faster connections
+        "socket_timeout": 30,      # faster timeout for quicker failures
+        "fragment_retries": 3      # fewer retries for faster error handling
     }
     ytdl = yt_dlp.YoutubeDL(ytdl_options)
 
-    # Optimized ffmpeg options for faster streaming
+    # optimized ffmpeg options for faster streaming
     ffmpeg_options = {
         "before_options": "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5 -fflags +discardcorrupt",
-        "options": "-vn -bufsize 1024k -maxrate 192k -ac 2 -ar 48000"  # Better buffering for video content
+        "options": "-vn -bufsize 1024k -maxrate 192k -ac 2 -ar 48000"
     }
 
     async def preload_audio_player(song_info):
